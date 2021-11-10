@@ -14,7 +14,23 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     vim \
-    nano
+    nano \
+    gnupg
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+
+#Ubuntu 18.04
+RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN exit
+RUN apt-get update
+RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17
+
+# optional: for unixODBC development headers
+RUN apt-get install -y unixodbc-dev
+
+# install SQL Server drivers
+RUN apt-get -y install unixodbc-dev
+RUN pecl install sqlsrv pdo_sqlsrv
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

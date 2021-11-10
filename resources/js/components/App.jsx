@@ -1,6 +1,6 @@
 import react from "react"
 
-export const Example = () => {
+export const App = () => {
     return (
         <div className="bg-white">
             <h3 className="text-2xl text-gray-700 font-medium uppercase">

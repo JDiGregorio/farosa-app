@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Example } from './components/Example'
+import { App } from './components/App'
 
 const app = document.getElementById('app')
 
 ReactDOM.render(
-    <Example />, app
+    <App />, app
 )

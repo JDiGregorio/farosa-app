@@ -2,48 +2,54 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Customer extends Model
 {
-    use HasApiTokens;
     use HasFactory;
-    use Notifiable;
+
+    protected $table = 'Customer';
+
+    protected $primaryKey = 'ID';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'username', 'password', 'enter_price', 'SalesRep_id', 'type_user'];
+    protected $fillable = ['ID', 'FirstName', 'AccountNumber', 'CustomText1', 'CustomText2', 'AccountBalance', 'CreditLimit', 'SalesRepID'];
+
+    /**
+     * The attributes that should be visible for serialization.
+     *
+     * @var array
+     */
+    protected $visible = ['ID', 'FirstName', 'CustomText2'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast.
      *
      * @var array
      */
-    protected $casts = ['email_verified_at' => 'datetime'];
+    protected $casts = [];
+
+    public $timestamps = false;
 
     /*-------------------------------------------------------------------------
     | FUNCTIONS
     |------------------------------------------------------------------------*/
 
-	protected static function booted()
+    public function saldo()
 	{
-		self::creating(function($model) {
-			$model->type_user = 1;
-        });
+		return $this->CreditLimit - $this->AccountBalance;
 	}
 
     /*-------------------------------------------------------------------------
@@ -52,7 +58,12 @@ class User extends Authenticatable
 
     public function saleRep()
 	{
-		return $this->belongsTo(SaleRep::class, 'SalesRep_id');
+		return $this->belongsTo(SaleRep::class, 'SalesRepID');
+	}
+	
+	public function transactionHolds()
+	{
+		return $this->hasMany(TransactionHold::class);
 	}
 
     /*------------------------------------------------------------------------

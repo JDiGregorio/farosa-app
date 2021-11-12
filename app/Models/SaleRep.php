@@ -2,57 +2,68 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class SaleRep extends Model
 {
-    use HasApiTokens;
     use HasFactory;
-    use Notifiable;
+
+    protected $table = 'SalesRep';
+
+    protected $primaryKey = 'ID';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'username', 'password', 'enter_price', 'SalesRep_id', 'type_user'];
+    protected $fillable = ['ID', 'Name'];
+
+    /**
+     * The attributes that should be visible for serialization.
+     *
+     * @var array
+     */
+    protected $visible = [];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast.
      *
      * @var array
      */
-    protected $casts = ['email_verified_at' => 'datetime'];
+    protected $casts = [];
+
+    public $timestamps = false;
 
     /*-------------------------------------------------------------------------
     | FUNCTIONS
     |------------------------------------------------------------------------*/
 
-	protected static function booted()
-	{
-		self::creating(function($model) {
-			$model->type_user = 1;
-        });
-	}
-
     /*-------------------------------------------------------------------------
     | RELATIONS
     |------------------------------------------------------------------------*/
 
-    public function saleRep()
+    public function customers()
 	{
-		return $this->belongsTo(SaleRep::class, 'SalesRep_id');
+		return $this->hasMany(Customer::class);
+	}
+	
+	public function transactionHolds()
+	{
+		return $this->hasMany(TransactionHold::class);
+	}
+	
+	public function users()
+	{
+		return $this->hasMany(User::class);
 	}
 
     /*------------------------------------------------------------------------

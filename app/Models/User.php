@@ -8,11 +8,17 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+use Illuminate\Auth\Passwords\CanResetPassword as PasswordsCanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword;
+
+use App\Notifications\ResetPasswordNotification;
+
+class User extends Authenticatable implements CanResetPassword
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
+    use PasswordsCanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +50,11 @@ class User extends Authenticatable
 		self::creating(function($model) {
 			$model->type_user = 1;
         });
+	}
+
+    public function sendPasswordResetNotification($token)
+	{
+		$this->notify(new ResetPasswordNotification($token, $this->name));
 	}
 
     /*-------------------------------------------------------------------------

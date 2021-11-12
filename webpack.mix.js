@@ -12,6 +12,9 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/index.jsx', 'public/js').react()
+    .js('resources/js/login.jsx', 'public/js').react()
+    .js('resources/js/forgotPassword.jsx', 'public/js').react()
+    .js('resources/js/resetPassword.jsx', 'public/js').react()
     .postCss("resources/css/app.css", "public/css", [
         require('tailwindcss')
     ])

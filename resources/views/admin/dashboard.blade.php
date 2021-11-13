@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Farosa</title>
 
         <link rel="shortcut icon" href="/img/favicon.ico">
 
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css')}}">
     </head>
     <body class="antialiased">
-        <div id="root"></div>
+        <div id="app"></div>
 
         <script src="{{ mix('js/index.js') }}"></script>
     </body>

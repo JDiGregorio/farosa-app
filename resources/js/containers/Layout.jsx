@@ -4,7 +4,7 @@ import routes from '../routes'
 
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
-import Main from '../containers/Main'
+import Main from './Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import { SidebarContext } from '../context/SidebarContext'
 
@@ -34,12 +34,12 @@ function Layout() {
                   <Route
                     key={i}
                     exact={true}
-                    path={`/app${route.path}`}
+                    path={`/${route.path}`}
                     render={(props) => <route.component {...props} />}
                   />
                 ) : null
               })}
-              <Redirect exact from="/app" to="/app/dashboard" />
+              <Redirect exact from="/" to="/dashboard" />
               <Route component={Page404} />
             </Switch>
           </Suspense>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { HeartIcon, EditIcon } from '../icons'
+import { HeartIcon, PencilIcon } from '@heroicons/react/solid'
 
 import PageTitle from '../components/Typography/PageTitle'
 import SectionTitle from '../components/Typography/SectionTitle'
@@ -137,7 +137,7 @@ function Buttons() {
         </div>
 
         <div>
-          <Button icon={EditIcon} aria-label="Edit" />
+          <Button icon={PencilIcon} aria-label="Edit" />
         </div>
 
         <div>

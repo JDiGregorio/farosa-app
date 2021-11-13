@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DropdownIcon } from '../../icons'
-import * as Icons from '../../icons'
+import { ArrowCircleDownIcon } from '@heroicons/react/solid'
+import * as Icons from '@heroicons/react/solid'
 import { Transition } from '@windmill/react-ui'
 
-function Icon({ icon, ...props }) {
-  const Icon = Icons[icon]
-  return <Icon {...props} />
-}
+
 
 function SidebarSubmenu({ route }) {
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false)
@@ -24,10 +21,10 @@ function SidebarSubmenu({ route }) {
         aria-haspopup="true"
       >
         <span className="inline-flex items-center">
-          <Icon className="w-5 h-5" aria-hidden="true" icon={route.icon} />
+          
           <span className="ml-4">{route.name}</span>
         </span>
-        <DropdownIcon className="w-4 h-4" aria-hidden="true" />
+        <ArrowCircleDownIcon className="w-4 h-4" aria-hidden="true" />
       </button>
       <Transition
         show={isDropdownMenuOpen}

@@ -5,7 +5,7 @@ import SectionTitle from '../components/Typography/SectionTitle'
 import CTA from '../components/CTA'
 import InfoCard from '../components/Cards/InfoCard'
 import { Card, CardBody } from '@windmill/react-ui'
-import { CartIcon, ChatIcon, MoneyIcon, PeopleIcon } from '../icons'
+import { ShoppingCartIcon, ChatIcon, CurrencyDollarIcon, UserGroupIcon } from '@heroicons/react/solid'
 import RoundIcon from '../components/RoundIcon'
 
 function Cards() {
@@ -30,7 +30,7 @@ function Cards() {
       <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
         <InfoCard title="Total clients" value="6389">
           <RoundIcon
-            icon={PeopleIcon}
+            icon={UserGroupIcon}
             iconColorClass="text-orange-500 dark:text-orange-100"
             bgColorClass="bg-orange-100 dark:bg-orange-500"
             className="mr-4"
@@ -39,7 +39,7 @@ function Cards() {
 
         <InfoCard title="Account balance" value="$ 46,760.89">
           <RoundIcon
-            icon={MoneyIcon}
+            icon={CurrencyDollarIcon}
             iconColorClass="text-green-500 dark:text-green-100"
             bgColorClass="bg-green-100 dark:bg-green-500"
             className="mr-4"
@@ -48,7 +48,7 @@ function Cards() {
 
         <InfoCard title="New sales" value="376">
           <RoundIcon
-            icon={CartIcon}
+            icon={ShoppingCartIcon}
             iconColorClass="text-blue-500 dark:text-blue-100"
             bgColorClass="bg-blue-100 dark:bg-blue-500"
             className="mr-4"

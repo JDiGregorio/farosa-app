@@ -16,7 +16,7 @@ import {
   Button,
   Pagination,
 } from '@windmill/react-ui'
-import { EditIcon, TrashIcon } from '../icons'
+import { PencilIcon, TrashIcon } from '@heroicons/react/solid'
 
 import response from '../utils/demo/tableData'
 // make a copy of the data, for the second table
@@ -153,7 +153,7 @@ function Tables() {
                 <TableCell>
                   <div className="flex items-center space-x-4">
                     <Button layout="link" size="icon" aria-label="Edit">
-                      <EditIcon className="w-5 h-5" aria-hidden="true" />
+                      <PencilIcon className="w-5 h-5" aria-hidden="true" />
                     </Button>
                     <Button layout="link" size="icon" aria-label="Delete">
                       <TrashIcon className="w-5 h-5" aria-hidden="true" />

@@ -13,6 +13,8 @@ class Customer extends Model
 
     protected $primaryKey = 'ID';
 
+    protected $appends = ['disponible'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +27,7 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $visible = ['ID', 'FirstName', 'CustomText2'];
+    protected $visible = ['ID', 'FirstName', 'CustomText2', 'disponible'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,11 +48,6 @@ class Customer extends Model
     /*-------------------------------------------------------------------------
     | FUNCTIONS
     |------------------------------------------------------------------------*/
-
-    public function saldo()
-	{
-		return $this->CreditLimit - $this->AccountBalance;
-	}
 
     /*-------------------------------------------------------------------------
     | RELATIONS
@@ -73,6 +70,11 @@ class Customer extends Model
     /*-------------------------------------------------------------------------
 	| ACCESORS
     |------------------------------------------------------------------------*/
+
+    public function getDisponibleAttribute()
+	{
+		return $this->CreditLimit - $this->AccountBalance;
+	}
 
     /*-------------------------------------------------------------------------
     | MUTATORS

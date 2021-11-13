@@ -63,7 +63,7 @@ class TransactionHoldEntry extends Model
 			$default_transaction_date_string = $default_transaction_date->toDateTimeLocalString() . "." . substr($default_transaction_date->format("u"), 0, 3);
 			
 			$model->VoucherExpirationDate = $default_expiration_date;
-			$model->TransactionTime = str_replace(" ", "T", $model->transactionhold()->get()->first()->TransactionTime);
+			$model->TransactionTime = str_replace(" ", "T", $model->transactionHold()->get()->first()->TransactionTime);
         });
     }
 

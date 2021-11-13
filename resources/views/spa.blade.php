@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css')}}">
     </head>
     <body class="antialiased">
-        <div id="app"></div>
+        <div id="root"></div>
 
         <script src="{{ mix('js/index.js') }}"></script>
     </body>

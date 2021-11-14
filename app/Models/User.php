@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 use Illuminate\Auth\Passwords\CanResetPassword as PasswordsCanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword;
@@ -42,6 +43,7 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = ['email_verified_at' => 'datetime'];
 
     protected $dateFormat = 'M j Y h:i:s';
+    public $timestamps = true;
 
     /*-------------------------------------------------------------------------
     | FUNCTIONS
@@ -53,11 +55,16 @@ class User extends Authenticatable implements CanResetPassword
 			$model->type_user = 1;
         });
 	}
-
+    
     public function sendPasswordResetNotification($token)
 	{
 		$this->notify(new ResetPasswordNotification($token, $this->name));
 	}
+
+    public function fromDateTime($value)
+    {
+        return Carbon::parse(parent::fromDateTime($value))->format('Y-d-m H:i:s');
+    }
 
     /*-------------------------------------------------------------------------
     | RELATIONS

@@ -41,6 +41,8 @@ class User extends Authenticatable implements CanResetPassword
      */
     protected $casts = ['email_verified_at' => 'datetime'];
 
+    protected $dateFormat = 'M j Y h:i:s';
+
     /*-------------------------------------------------------------------------
     | FUNCTIONS
     |------------------------------------------------------------------------*/

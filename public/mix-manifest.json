@@ -1,7 +1,7 @@
 {
-    "/js/index.js": "/js/index.js",
-    "/js/login.js": "/js/login.js",
-    "/js/forgotPassword.js": "/js/forgotPassword.js",
-    "/js/resetPassword.js": "/js/resetPassword.js",
-    "/css/app.css": "/css/app.css"
+    "/js/index.js": "/js/index.js?id=5f56e137512466eb9232",
+    "/js/login.js": "/js/login.js?id=f57b25c03ef1e009d984",
+    "/js/forgotPassword.js": "/js/forgotPassword.js?id=1cda858f5af69c29f39f",
+    "/js/resetPassword.js": "/js/resetPassword.js?id=a026ae811653f9e23ab8",
+    "/css/app.css": "/css/app.css?id=cf39640ae2d6330fa8cd"
 }

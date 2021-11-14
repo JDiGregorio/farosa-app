@@ -1,5 +1,5 @@
-import React, { useContext, Suspense, useEffect, lazy } from 'react'
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
+import React, { useContext, Suspense, useEffect, useState, lazy } from 'react'
+import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom'
 import routes from '../routes'
 
 import Sidebar from '../components/Sidebar'
@@ -14,6 +14,15 @@ function Layout() {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext)
   let location = useLocation()
 
+  const [user] = useState(localStorage.getItem("user") ? localStorage.getItem("user") : null)
+  const history = useHistory()  
+  useEffect(() => {
+    if (user) {
+      history.push("/dashboard")
+    } else {
+      history.push("/login")
+    }
+  },[user])
   useEffect(() => {
     closeSidebar()
   }, [location])
@@ -34,7 +43,7 @@ function Layout() {
                   <Route
                     key={i}
                     exact={true}
-                    path={`/${route.path}`}
+                    path={`${route.path}`}
                     render={(props) => <route.component {...props} />}
                   />
                 ) : null

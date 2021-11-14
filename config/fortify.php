@@ -61,7 +61,7 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::ADMIN,
+    'home' => env('APP_URL') . '/dashboard',
 
     /*
     |--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'prefix' => 'admin',
+    'prefix' => 'api',
 
     'domain' => null,
 
@@ -117,7 +117,7 @@ return [
     |
     */
 
-    'views' => true,
+    'views' => false,
 
     /*
     |--------------------------------------------------------------------------

@@ -28,12 +28,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
-            public function toResponse($request)
-            {
-                return redirect('/admin/login');
-            }
-        });
+       
     }
 
     /**
@@ -64,17 +59,6 @@ class FortifyServiceProvider extends ServiceProvider
             // }
         });
 
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-
-        Fortify::requestPasswordResetLinkView(function () {
-            return view('auth.passwords.email');
-        });
-
-        Fortify::resetPasswordView(function ($request) {
-            return view('auth.passwords.reset', ['request' => $request]);
-        });
 
         RateLimiter::for('login', function (Request $request) {
             return Limit::perMinute(5)->by($request->email . $request->ip());

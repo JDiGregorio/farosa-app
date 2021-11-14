@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.crud.user.list', ['title' => 'Usuarios']);
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -35,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.user.create');
+        
     }
 
     /**
@@ -47,7 +48,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = User::create($request->all());
-        return redirect()->action([UserController::class, 'edit'], ['user' => $user->id]);
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        return redirect()->action([UserController::class, 'edit'], ['user' => $user->id]);
+        
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.crud.user.show');
+        return  new UserResource($user);
     }
 
     /**
@@ -95,4 +95,6 @@ class UserController extends Controller
     {
         return $user->delete();
     }
+
+   
 }

@@ -1,6 +1,5 @@
 import axios, { AxiosPromise } from "axios"
 
-import CrudServiceInterface from "../interfaces/crudServiceInterface"
 import { genericService } from "./genericService"
 
 const CrudService = (endpoint) => ({

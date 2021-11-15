@@ -1,7 +1,5 @@
    
-import axios, { AxiosPromise } from "axios"
-
-import ServiceInterface from "../interfaces/serviceInterface"
+import axios from "axios"
 
 export const genericService = ({ url, method, params,data, headers }) => {
     const urlComplete = `/api${url}`

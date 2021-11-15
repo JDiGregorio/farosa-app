@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom"
 import axios from 'axios'
-import { useHistory } from "react-router-dom";
+
 import { withLayout } from './Layout'
 
 const Login = () => {
     const [usuario, setUsuario] = useState({ username: '', password: '' })
     const [errors, setErrors] = useState({})
-    const history = useHistory();
+    const history = useHistory()
 
     useEffect(() => {
-        axios.get('/sanctum/csrf-cookie').then(response => {
-           // history.push("/")
-        });
+        axios.get('/sanctum/csrf-cookie')
     }, [])
 
     const handleChangeInput = event => {
@@ -45,13 +44,11 @@ const Login = () => {
         axios.post("/api/login", formData)
             .then(response => {
                 if (response.status == 200) {
-
                     axios.get('api/user').then((res) => {
                         localStorage.setItem('user', JSON.stringify(res.data.data))
                         history.push("/dashboard")
                     })
-
-            }
+                }
             })
             .catch(error => {
                 console.log(error)
@@ -76,13 +73,7 @@ const Login = () => {
                 <input type="password" name="password" id="password" onChange={handleChangeInput} placeholder="Contraseña" required className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
             </div>
 
-            <div className="flex items-right justify-end">
-                <div className="text-sm">
-                    <a href="/admin/forgot-password" className="font-medium text-red-700 hover:text-red-900 font-medium">
-                        ¿Olvidó su contraseña?
-                    </a>
-                </div>
-            </div>
+            <hr className="my-8" />
 
             <button type="submit" onClick={handleSubmit} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none">
                 Ingresar

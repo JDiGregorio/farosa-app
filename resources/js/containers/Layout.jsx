@@ -10,12 +10,13 @@ import { SidebarContext } from '../context/SidebarContext'
 
 const Page404 = lazy(() => import('../pages/404'))
 
-function Layout() {
+const Layout = () => {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext)
   let location = useLocation()
 
   const [user] = useState(localStorage.getItem("user") ? localStorage.getItem("user") : null)
-  const history = useHistory()  
+  const history = useHistory()
+
   useEffect(() => {
     if (user) {
       history.push("/dashboard")
@@ -23,30 +24,30 @@ function Layout() {
       history.push("/login")
     }
   },[user])
+
   useEffect(() => {
     closeSidebar()
   }, [location])
 
   return (
-    <div
-      className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}
-    >
+    <div className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}>
       <Sidebar />
 
       <div className="flex flex-col flex-1 w-full">
         <Header />
+
         <Main>
           <Suspense fallback={<ThemedSuspense />}>
             <Switch>
-              {routes.map((route, i) => {
+              { routes.map((route, index) => {
                 return route.component ? (
                   <Route
-                    key={i}
+                    key={index}
                     exact={true}
                     path={`${route.path}`}
                     render={(props) => <route.component {...props} />}
                   />
-                ) : null
+                ) : (null)
               })}
               <Redirect exact from="/" to="/dashboard" />
               <Route component={Page404} />

@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import { Windmill } from '@windmill/react-ui'
+
+import * as serviceWorker from './serviceWorker'
 import { SidebarProvider } from './context/SidebarContext'
 import ThemedSuspense from './components/ThemedSuspense'
-import { Windmill } from '@windmill/react-ui'
-import * as serviceWorker from './serviceWorker'
+import App from './App'
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const axe = require('react-axe')

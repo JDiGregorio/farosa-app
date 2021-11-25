@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 use App\Http\Resources\UserResource;
 
 /*
@@ -19,8 +20,6 @@ use App\Http\Resources\UserResource;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());
 });
-
-
 
 Route::resource('dashboard', 'App\Http\Controllers\DashboardController');
 Route::resource('customer', "App\Http\Controllers\CustomerController");

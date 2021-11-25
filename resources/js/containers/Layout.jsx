@@ -1,6 +1,5 @@
 import React, { useContext, Suspense, useEffect, useState, lazy } from 'react'
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom'
-import routes from '../routes'
 
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
@@ -10,6 +9,8 @@ import { SidebarContext } from '../context/SidebarContext'
 
 const Page404 = lazy(() => import('../pages/404'))
 
+import routes from '../routes'
+
 const Layout = () => {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext)
   let location = useLocation()
@@ -17,9 +18,11 @@ const Layout = () => {
   const [user] = useState(localStorage.getItem("user") ? localStorage.getItem("user") : null)
   const history = useHistory()
 
+  console.log(routes)
+
   useEffect(() => {
     if (user) {
-      history.push("/dashboard")
+      history.push("/inicio")
     } else {
       history.push("/login")
     }
@@ -49,7 +52,7 @@ const Layout = () => {
                   />
                 ) : (null)
               })}
-              <Redirect exact from="/" to="/dashboard" />
+              <Redirect exact from="/" to="/inicio" />
               <Route component={Page404} />
             </Switch>
           </Suspense>

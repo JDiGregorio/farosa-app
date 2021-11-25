@@ -1,27 +1,47 @@
 import React from 'react'
-import { ChatIcon, ShoppingCartIcon, CurrencyDollarIcon, UserGroupIcon } from '@heroicons/react/solid'
+import { UserGroupIcon, CollectionIcon, PencilAltIcon, UsersIcon, LogoutIcon } from '@heroicons/react/solid'
+import { useHistory } from "react-router-dom"
+import axios from "axios"
 
-import InfoCard from '../../components/Cards/InfoCard'
-import RoundIcon from '../../components/RoundIcon'
+import { SettingCard } from './settingCard'
+import { LogoutCard } from './LogoutCard'
 
-function Dashboard() {
+const Dashboard = () => {
+  const history = useHistory()
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  const logout = (event) => {
+    event.preventDefault()
+
+    axios.post('api/logout').then(() => {
+      localStorage.removeItem('user')
+      history.push("/login")
+    })
+  }
+
   return (
-    <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-      <InfoCard title="Total clients" value="6389">
-        <RoundIcon icon={UserGroupIcon} iconColorClass="text-orange-500 dark:text-orange-100" bgColorClass="bg-orange-100 dark:bg-orange-500" className="mr-4" />
-      </InfoCard>
+    <div className="space-y-10">
+      <div className="grid grid-cols-2 gap-4">
+        <SettingCard key={1} id={1} canSee={true} title="Clientes" to="/clientes">
+          <UserGroupIcon className="h-12 w-12 text-gray-600" />
+        </SettingCard>
 
-      <InfoCard title="Account balance" value="$ 46,760.89">
-        <RoundIcon icon={CurrencyDollarIcon} iconColorClass="text-green-500 dark:text-green-100" bgColorClass="bg-green-100 dark:bg-green-500" className="mr-4" />
-      </InfoCard>
+        <SettingCard key={2} id={2} canSee={true} title="Productos" to="/productos">
+          <CollectionIcon className="h-12 w-12 text-gray-600" />
+        </SettingCard>
+        
+        <SettingCard key={3} id={3} canSee={true} title="Pedidos" to="/pedidos">
+          <PencilAltIcon className="h-12 w-12 text-gray-600" />
+        </SettingCard>
 
-      <InfoCard title="New sales" value="376">
-        <RoundIcon icon={ShoppingCartIcon} iconColorClass="text-blue-500 dark:text-blue-100" bgColorClass="bg-blue-100 dark:bg-blue-500" className="mr-4" />
-      </InfoCard>
+        <SettingCard key={4} id={4} canSee={user.type_user} title="Usuarios" to="/usuarios">
+          <UsersIcon className="h-12 w-12 text-gray-600" />
+        </SettingCard>
 
-      <InfoCard title="Pending contacts" value="35">
-        <RoundIcon icon={ChatIcon} iconColorClass="text-teal-500 dark:text-teal-100" bgColorClass="bg-teal-100 dark:bg-teal-500" className="mr-4" />
-      </InfoCard>
+        {/*<LogoutCard key={5} id={5} canSee={true} title="Salir" onClick={logout}>
+          <LogoutIcon className="h-12 w-12 text-gray-600" />
+        </LogoutCard>*/}
+      </div>
     </div>
   )
 }

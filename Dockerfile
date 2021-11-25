@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 
 #Ubuntu 18.04
-RUN curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
 RUN exit
 RUN apt-get update
 RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17

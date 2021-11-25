@@ -46,7 +46,7 @@ const Login = () => {
                 if (response.status == 200) {
                     axios.get('api/user').then((res) => {
                         localStorage.setItem('user', JSON.stringify(res.data.data))
-                        history.push("/dashboard")
+                        history.push("/inicio")
                     })
                 }
             })

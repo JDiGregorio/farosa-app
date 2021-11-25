@@ -1,13 +1,11 @@
 import React, { useContext } from 'react'
-import { MoonIcon, SunIcon, MenuIcon, LogoutIcon } from '@heroicons/react/outline'
+import { MenuIcon, LogoutIcon } from '@heroicons/react/outline'
 import { useHistory } from "react-router-dom"
-import { WindmillContext } from '@windmill/react-ui'
 import axios from 'axios'
 
 import { SidebarContext } from '../context/SidebarContext'
 
 function Header() {
-  const { mode, toggleMode } = useContext(WindmillContext)
   const { toggleSidebar } = useContext(SidebarContext)
   const history = useHistory()
 
@@ -25,23 +23,13 @@ function Header() {
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
 
-        <ul className="flex justify-end items-center flex-shrink-0 space-x-6">
-          <li className="flex">
-            <button className="rounded-md focus:outline-none focus:shadow-outline-purple" onClick={toggleMode} aria-label="Toggle color mode">
-              {mode === 'dark' ? (
-                <SunIcon className="w-5 h-5" aria-hidden="true" />
-              ) : (
-                <MoonIcon className="w-5 h-5" aria-hidden="true" />
-              )}
-            </button>
-          </li>
-
+        {/*<ul className="flex justify-end items-center flex-shrink-0 space-x-6">
           <li className="flex">
             <button className="rounded-md focus:outline-none focus:shadow-outline-purple" onClick={logout} aria-label="Toggle logout">
               <LogoutIcon className="w-5 h-5" aria-hidden="true" />
             </button>
           </li>
-        </ul>
+        </ul>*/}
       </div>
     </header>
   )

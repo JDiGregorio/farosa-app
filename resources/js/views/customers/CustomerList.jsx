@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react"
 import DataTable from 'react-data-table-component';
 import custumerTableConstant from "../../constants/tables/custumerTableConstant";
 import customStyles from "../../constants/dataTableStyles";
-import  PageTitle  from "../../components/Typography/PageTitle"
+import PageTitle from "../../components/Typography/PageTitle"
+import { SearchInputList } from "../../components/Fields/SearchInputList"
 
 const CustomerList = () => {
 
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [filterButttons, setFiltetButtons] = useState(false)
 
     useEffect(() => {
         axios.get('/api/customer').then((res) => {
@@ -55,6 +57,16 @@ const CustomerList = () => {
                 <PageTitle>
                     Customers
                 </PageTitle>
+
+                <SearchInputList canSee={true} onChange={handleSearch} />
+                {filterButttons && (
+                    <>
+                        <button onClick={() => { }} aria-haspopup="true" className="ml-2 shadow mr-2 align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-indigo-600 border border-transparent active:bg-indigo-600 hover:bg-indigo-700 focus:ring focus:ring-indigo-300"  >
+                            <TrashIcon className="h-6 w-6" />
+                        </button>
+
+                    </>
+                )}
             </div>
             <div className="shadow-md overflow-hidden rounded-xl mt-8">
                 <DataTable

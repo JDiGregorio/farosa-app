@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Customer;
 
+use App\Http\Resources\Customers\CustomerShowResource;
+
 class CustomerController extends Controller
 {
     /**
@@ -80,7 +82,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return new CustomerShowResource($customer);
     }
 
     /**

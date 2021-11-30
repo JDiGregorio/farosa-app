@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('dashboard', 'App\Http\Controllers\DashboardController');
-Route::resource('customer', "App\Http\Controllers\CustomerController");
+Route::resource('customer', CustomerController::class);
 Route::resource('items', "App\Http\Controllers\ItemController");
 Route::resource('pedidos', "App\Http\Controllers\TransactionHoldController");
 Route::resource('users', "App\Http\Controllers\UserController");

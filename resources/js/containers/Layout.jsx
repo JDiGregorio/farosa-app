@@ -18,8 +18,6 @@ const Layout = () => {
   const [user] = useState(localStorage.getItem("user") ? localStorage.getItem("user") : null)
   const history = useHistory()
 
-  console.log(routes)
-
   useEffect(() => {
     if (user) {
       history.push("/inicio")

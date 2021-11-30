@@ -50,7 +50,7 @@ const Layout = () => {
                   />
                 ) : (null)
               })}
-              <Redirect exact from="/" to="/inicio" />
+              
               <Route component={Page404} />
             </Switch>
           </Suspense>

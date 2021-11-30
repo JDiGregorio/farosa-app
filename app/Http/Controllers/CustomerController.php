@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use App\Models\Customer;
 
 use App\Http\Resources\Customers\CustomerShowResource;
 
 class CustomerController extends Controller
 {
+    use Filterable;
+
+    private static $whiteListFilter = ['*'];
     /**
      * Create the controller instance.
      *
@@ -27,7 +30,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+       return  Customer::ignoreRequest(['perpage'])
+            ->filter()
+            ->paginate(request()->get('perpage'), ['*'], 'page');
     }
 
     /**

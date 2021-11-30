@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Customer extends Model
 {
     use HasFactory;
+    use Filterable;
 
     protected $table = 'Customer';
+    
+    protected $whiteList = ['*'];
 
     protected $primaryKey = 'ID';
 

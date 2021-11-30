@@ -11,7 +11,8 @@ const SidebarContent = () => {
   const history = useHistory()
 
   const logout = () => {
-    axios.post('api/logout').then(() => {
+    axios.post('api/logout')
+    .then(() => {
       localStorage.removeItem('user')
       history.push("/login")
     })

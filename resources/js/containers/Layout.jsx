@@ -18,8 +18,6 @@ const Layout = () => {
   const [user] = useState(localStorage.getItem("user") ? localStorage.getItem("user") : null)
   const history = useHistory()
 
-  console.log(routes)
-
   useEffect(() => {
     if (user) {
       history.push("/inicio")
@@ -33,7 +31,7 @@ const Layout = () => {
   }, [location])
 
   return (
-    <div className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}>
+    <div className={`flex h-screen bg-gray-50 ${isSidebarOpen && 'overflow-hidden'}`}>
       <Sidebar />
 
       <div className="flex flex-col flex-1 w-full">

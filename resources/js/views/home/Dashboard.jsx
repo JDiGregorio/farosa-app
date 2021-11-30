@@ -20,27 +20,27 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="space-y-10">
+    <div className="py-8 space-y-10">
       <div className="grid grid-cols-2 gap-4">
-        <SettingCard key={1} id={1} canSee={true} title="Clientes" to="/clientes">
+        <SettingCard canSee={true} title="Clientes" to="/clientes">
           <UserGroupIcon className="h-12 w-12 text-gray-600" />
         </SettingCard>
 
-        <SettingCard key={2} id={2} canSee={true} title="Productos" to="/productos">
+        <SettingCard canSee={true} title="Productos" to="/productos">
           <CollectionIcon className="h-12 w-12 text-gray-600" />
         </SettingCard>
         
-        <SettingCard key={3} id={3} canSee={true} title="Pedidos" to="/pedidos">
+        <SettingCard canSee={true} title="Pedidos" to="/pedidos">
           <PencilAltIcon className="h-12 w-12 text-gray-600" />
         </SettingCard>
 
-        <SettingCard key={4} id={4} canSee={user.type_user} title="Usuarios" to="/usuarios">
+        <SettingCard canSee={user.type_user} title="Usuarios" to="/usuarios">
           <UsersIcon className="h-12 w-12 text-gray-600" />
         </SettingCard>
 
-        {/*<LogoutCard key={5} id={5} canSee={true} title="Salir" onClick={logout}>
+        <LogoutCard key={5} id={5} canSee={true} title="Salir" onClick={logout}>
           <LogoutIcon className="h-12 w-12 text-gray-600" />
-        </LogoutCard>*/}
+        </LogoutCard>
       </div>
     </div>
   )

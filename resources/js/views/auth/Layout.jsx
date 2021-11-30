@@ -15,7 +15,7 @@ export const withLayout = (WrappedComponent) => {
                         <WrappedComponent />
 
                         <div className="text-center">
-                            <p className="text-sm font-medium text-gray-700 dark:text-gray-600">
+                            <p className="text-sm font-medium text-gray-700">
                                 ©{moment().format("Y")} FAROSA
                             </p>
                         </div>

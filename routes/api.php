@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());
 });
 
-Route::resource('dashboard', 'App\Http\Controllers\DashboardController');
-Route::resource('customer', "CustomerController");
-Route::resource('items', "App\Http\Controllers\ItemController");
-Route::resource('pedidos', "App\Http\Controllers\TransactionHoldController");
-Route::resource('users', "App\Http\Controllers\UserController");
+Route::resource('dashboard', DashboardController::class);
+Route::resource('customer', CustomerController::class);
+Route::resource('items', ItemController::class);
+Route::resource('pedidos', TransactionHoldController::class);
+Route::resource('users', UserController::class);

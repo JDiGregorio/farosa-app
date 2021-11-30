@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class Customer extends Model
 {
@@ -12,26 +12,24 @@ class Customer extends Model
     use Filterable;
 
     protected $table = 'Customer';
-    
-    protected $whiteList = ['*'];
 
     protected $primaryKey = 'ID';
 
-    protected $appends = ['disponible'];
+    protected $appends = ['available'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = ['ID', 'FirstName', 'AccountNumber', 'CustomText1', 'CustomText2', 'AccountBalance', 'CreditLimit', 'SalesRepID'];
+    protected $fillable = ['ID', 'FirstName', 'AccountNumber', 'AccountBalance', 'CreditLimit', 'CustomText1', 'CustomText2', 'SalesRepID'];
 
     /**
      * The attributes that should be visible for serialization.
      *
      * @var array
      */
-    protected $visible = ['ID', 'FirstName', 'CustomText2', 'disponible'];
+    protected $visible = ['ID', 'FirstName', 'CustomText2', 'available'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,6 +44,8 @@ class Customer extends Model
      * @var array
      */
     protected $casts = [];
+
+    private static $whiteListFilter = ['*'];
 
     public $timestamps = false;
 
@@ -75,7 +75,7 @@ class Customer extends Model
 	| ACCESORS
     |------------------------------------------------------------------------*/
 
-    public function getDisponibleAttribute()
+    public function getAvailableAttribute()
 	{
 		return $this->CreditLimit - $this->AccountBalance;
 	}

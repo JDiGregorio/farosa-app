@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class Item extends Model
 {
     use HasFactory;
+    use Filterable;
 
     protected $table = 'Item';
 
@@ -18,14 +20,14 @@ class Item extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['ID', 'Description', 'ItemLookupCode', 'Price', 'PriceA', 'PriceB', 'PriceC', 'Quantity'];
+    protected $fillable = ['ID', 'ItemLookupCode', 'Description', 'Price', 'PriceA', 'PriceB', 'PriceC', 'Quantity'];
 
     /**
      * The attributes that should be visible for serialization.
      *
      * @var array
      */
-    protected $visible = ['ID', 'Description', 'ItemLookupCode', 'Price', 'PriceA', 'PriceB', 'PriceC', 'Quantity'];
+    protected $visible = ['ID', 'Description', 'ItemLookupCode', 'Quantity', 'Price', 'PriceA', 'PriceB', 'PriceC'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,6 +42,8 @@ class Item extends Model
      * @var array
      */
     protected $casts = [];
+
+    private static $whiteListFilter = ['*'];
 
     public $timestamps = false;
 

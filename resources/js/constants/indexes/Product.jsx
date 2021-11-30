@@ -4,13 +4,18 @@ import { EyeIcon } from "@heroicons/react/outline"
 export const columns = [
     {
         name: 'Código',
-        selector: row => row.accountNumber,
+        selector: row => row.itemLookupCode,
         sortable: false
     },
     {
-        name: 'Nombre',
-        selector: row => row.firstName,
+        name: 'Descripción',
+        selector: row => row.description,
         sortable: true
+    },
+    {
+        name: 'Stock',
+        selector: row => row.quantity,
+        sortable: false
     },
     {
         name: 'Acciones',
@@ -20,7 +25,7 @@ export const columns = [
             return (
                 <div className="flex justify-center items-center">
                     {
-                        <Link to={`/clientes/${row.id}`} className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-sm text-gray-600 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 focus:ring focus:ring-indigo-300">
+                        <Link to={`/productos/${row.id}`} className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-sm text-gray-600 focus:outline-none border border-transparent active:bg-transparent hover:bg-gray-100 focus:ring focus:ring-indigo-300">
                             <EyeIcon className="w-5 h-5" aria-hidden="true" />
                         </Link>
                     }

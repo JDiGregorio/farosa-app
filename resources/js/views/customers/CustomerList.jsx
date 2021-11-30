@@ -36,46 +36,6 @@ const CustomerList = () => {
         })
     }
 
-    const handlePerRowsChange = (currentRowsPerPage, currentPage) => {
-        setLoading(true)
-
-        axios.get(`/api/customer?page=${currentPage}&perpage=${currentRowsPerPage}`)
-        .then(res => {
-            setData(res.data.data)
-            setLoading(false)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
-
-    const handleSort = (column, sortDirection) => {
-        setLoading(true)
-
-        axios.get(`/api/customer?page=${actualPage}&f_params[orderBy][field]=${column.name}&f_params[orderBy][type]=${sortDirection}`)
-        .then(res => {
-            setData(res.data.data)
-            setLoading(false)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
-
-    const handlePageChange = (page) => {
-        setLoading(true)
-        setActualPage(page)
-
-        axios.get(`/api/customer?page=${page}`)
-            .then(res => {
-                setData(res.data.data)
-                setLoading(false)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
     return (
         <>
             <BreadCrumb 
@@ -97,17 +57,11 @@ const CustomerList = () => {
                 <DataTable
                     responsive={true}
                     customStyles={styles.customStyle}
+                    defaultSortFieldId="firstName"
                     loading={loading}
                     columns={constants.columns}
                     data={data}
                     pagination
-                    paginationServer
-                    sortServer
-                    paginationTotalRows={10}
-                    handleSearch={handleSearch}
-                    onSort={handleSort}
-                    onChangeRowsPerPage={handlePerRowsChange}
-                    onChangePage={handlePageChange}
                 />
             </div>
         </>

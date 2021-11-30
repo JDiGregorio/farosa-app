@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 use App\Models\Customer;
 
@@ -19,7 +18,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-       return  CustomerIndexResource::collection(Customer::ignoreRequest(['perpage'])->filter()->paginate(request()->get('perpage'), ['*'], 'page'));
+       return  CustomerIndexResource::collection(Customer::filter(request()->all())->get());
     }
 
     /**

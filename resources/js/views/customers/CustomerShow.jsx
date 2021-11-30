@@ -26,8 +26,8 @@ const CustomerShow = () => {
         <>
             <BreadCrumb 
                 links={[
-                { path: '/clientes', name: 'Clientes' },
-                { path: '', name: 'Vista previa' }
+                    { path: '/clientes', name: 'Clientes' },
+                    { path: '', name: 'Vista previa' }
                 ]} 
             />
 

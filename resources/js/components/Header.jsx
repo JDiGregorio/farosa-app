@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import { SidebarContext } from '../context/SidebarContext'
 
-function Header() {
+const Header = () => {
   const { toggleSidebar } = useContext(SidebarContext)
   const history = useHistory()
 

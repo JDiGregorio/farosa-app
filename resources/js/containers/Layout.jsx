@@ -31,7 +31,7 @@ const Layout = () => {
   }, [location])
 
   return (
-    <div className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}>
+    <div className={`flex h-screen bg-gray-50 ${isSidebarOpen && 'overflow-hidden'}`}>
       <Sidebar />
 
       <div className="flex flex-col flex-1 w-full">

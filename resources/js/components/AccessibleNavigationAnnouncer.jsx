@@ -6,9 +6,7 @@ function AccessibleNavigationAnnouncer() {
   const location = useLocation()
 
   useEffect(() => {
-    // ignore the /
     if (location.pathname.slice(1)) {
-      // make sure navigation has occurred and screen reader is ready
       setTimeout(() => setMessage(`Navigated to ${location.pathname.slice(1)} page.`), 500)
     } else {
       setMessage('')

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class Customer extends Model
 {
@@ -12,8 +12,6 @@ class Customer extends Model
     use Filterable;
 
     protected $table = 'Customer';
-    
-    protected $whiteList = ['*'];
 
     protected $primaryKey = 'ID';
 
@@ -46,6 +44,8 @@ class Customer extends Model
      * @var array
      */
     protected $casts = [];
+
+    private static $whiteListFilter = ['*'];
 
     public $timestamps = false;
 

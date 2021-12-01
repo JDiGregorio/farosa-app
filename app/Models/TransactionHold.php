@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class TransactionHold extends Model
 {
     use HasFactory;
+	use Filterable;
 
     protected $table = 'TransactionHold';
 
@@ -51,6 +53,8 @@ class TransactionHold extends Model
      * @var array
      */
     protected $casts = [];
+
+	private static $whiteListFilter = ['*'];
 
     public $timestamps = false;
 

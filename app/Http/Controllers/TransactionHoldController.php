@@ -6,18 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Models\TransactionHold;
 
+use App\Http\Resources\Transactions\TransactionHoldIndexResource;
+use App\Http\Resources\Transactions\TransactionHoldShowResource;
+
 class TransactionHoldController extends Controller
 {
-    /**
-     * Create the controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // $this->authorizeResource(TransactionHold::class, 'hold');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +18,7 @@ class TransactionHoldController extends Controller
      */
     public function index()
     {
-        //
+        return  TransactionHoldIndexResource::collection(TransactionHold::filter(request()->all())->get());
     }
 
     /**
@@ -49,28 +42,6 @@ class TransactionHoldController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TransactionHold  $transactionHold
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TransactionHold $transactionHold)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TransactionHold  $transactionHold
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, TransactionHold $transactionHold)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -80,7 +51,7 @@ class TransactionHoldController extends Controller
      */
     public function show(TransactionHold $transactionHold)
     {
-        //
+        return new TransactionHoldShowResource($transactionHold);
     }
 
     /**
@@ -91,6 +62,6 @@ class TransactionHoldController extends Controller
      */
     public function destroy(TransactionHold $transactionHold)
     {
-        //
+        $transactionHold->delete();
     }
 }

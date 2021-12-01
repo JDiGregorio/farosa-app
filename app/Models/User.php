@@ -8,6 +8,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 use Illuminate\Auth\Passwords\CanResetPassword as PasswordsCanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword;
@@ -20,13 +21,14 @@ class User extends Authenticatable implements CanResetPassword
     use HasFactory;
     use Notifiable;
     use PasswordsCanResetPassword;
+    use Filterable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'username', 'password', 'enter_price', 'SalesRep_id', 'type_user'];
+    protected $fillable = ['name', 'username', 'email', 'password', 'enter_price', 'SalesRep_id', 'type_user'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,6 +45,9 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = ['email_verified_at' => 'datetime'];
 
     protected $dateFormat = 'M j Y h:i:s';
+
+    private static $whiteListFilter = ['*'];
+    
     public $timestamps = true;
 
     /*-------------------------------------------------------------------------
@@ -52,7 +57,7 @@ class User extends Authenticatable implements CanResetPassword
 	protected static function booted()
 	{
 		self::creating(function($model) {
-			$model->type_user = 1;
+			// $model->type_user = 1;
         });
 	}
     

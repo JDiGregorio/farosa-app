@@ -6,7 +6,10 @@ const CustomerShow = lazy(() => import('../views/customers/CustomerShow'))
 const ProductList = lazy(() => import('../views/products/ProductList'))
 const ProductShow = lazy(() => import('../views/products/ProductShow'))
 const OrderList = lazy(() => import('../views/orders/OrderList'))
+const OrderCreate = lazy(() => import('../views/orders/OrderCreate'))
+const OrderShow = lazy(() => import('../views/orders/OrderShow'))
 const UserList = lazy(() => import('../views/users/UserList'))
+const UserCreate = lazy(() => import('../views/users/UserCreate'))
 const Page404 = lazy(() => import('../pages/404'))
 
 const routes = [
@@ -39,8 +42,24 @@ const routes = [
     component: OrderList
   },
   {
+    path: '/pedidos/crear',
+    component: OrderCreate
+  },
+  {
+    path: '/pedidos/:id',
+    component: OrderShow
+  },
+  {
     path: '/usuarios',
     component: UserList
+  },
+  {
+    path: '/usuarios/crear',
+    component: UserCreate
+  },
+  {
+    path: '/usuarios/:id/editar',
+    component: UserCreate
   },
   {
     path: '/404',

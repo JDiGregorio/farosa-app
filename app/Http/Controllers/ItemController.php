@@ -19,7 +19,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return  ItemIndexResource::collection(Item::filter(request()->all())->get());
+        return ItemIndexResource::collection(Item::filter(request()->all())->get());
     }
 
     /**

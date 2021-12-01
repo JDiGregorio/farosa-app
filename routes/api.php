@@ -16,13 +16,16 @@ use App\Http\Resources\UserResource;
 |
 */
 
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return new UserResource($request->user());
+    });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return new UserResource($request->user());
+    Route::get('/users/related-data', [App\Http\Controllers\UserController::class, 'getRelatedData']);
+
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('customer', CustomerController::class);
+    Route::resource('items', ItemController::class);
+    Route::resource('transactions', TransactionHoldController::class);
+    Route::resource('users', UserController::class);
 });
-
-Route::resource('dashboard', DashboardController::class);
-Route::resource('customer', CustomerController::class);
-Route::resource('items', ItemController::class);
-Route::resource('transactions', TransactionHoldController::class);
-Route::resource('users', UserController::class);

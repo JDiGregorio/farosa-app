@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
+use App\Models\SaleRep;
+
+use App\Http\Resources\Users\UserIndexResource;
+use App\Http\Resources\Users\UserResource;
 
 class UserController extends Controller
 {
-    /**
-     * Create the controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // $this->authorizeResource(User::class, 'user');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,17 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
+        return UserIndexResource::collection(User::filter(request()->all())->get());
     }
 
     /**
@@ -47,18 +31,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
-    }
+        $entries =  $request->all();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        return view('admin.crud.user.create');
+        $entries['password'] = Hash::make($request->password);
+
+        $user = User::create($entries);
+
+        return response()->json(['userId' => $user->id]);
     }
 
     /**
@@ -70,19 +49,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
-        
-    }
+        $entries = $request->all();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        return  new UserResource($user);
+        if ($request->password == "") {
+            unset($entries['password']);
+        } else {
+            $entries['password'] = Hash::make($request->password);
+        }
+
+        $user->update($entries);
+
+        return response()->json(['userId' => $user->id]);
     }
 
     /**
@@ -94,5 +71,24 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         return $user->delete();
+    }
+
+    public function getRelatedData(Request $request)
+    {
+        $response = [
+            'representantes' => SaleRep::all()->map(function($item) {
+                return [
+                    'value' => $item->ID,
+                    'label' => $item->Name
+                ];
+            })
+        ];
+
+        if ($request->userId) {
+            $user = User::find($request->userId);
+            $response['user'] = new UserResource($user);
+        }
+
+        return $response;
     }
 }

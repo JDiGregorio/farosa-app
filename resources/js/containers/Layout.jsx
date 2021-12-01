@@ -19,9 +19,7 @@ const Layout = () => {
   const history = useHistory()
 
   useEffect(() => {
-    if (user) {
-      history.push("/inicio")
-    } else {
+    if (!user) {
       history.push("/login")
     }
   },[user])

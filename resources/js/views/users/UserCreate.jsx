@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import { Button } from "@windmill/react-ui"
+import Select from 'react-select'
 import axios from "axios"
 
 import { BreadCrumb } from "../../components/BreadCrumbs/BreadCrumb"
 import { Title } from "../../components/Typography/Title"
 import { ErrorView } from "../../components/Typography/ErrorView"
+import { ToggleButton } from "../../components/Fields/ToggleButton"
+import { Alert } from "../../components/notifications/Alert"
+
+import { validateForm } from "../../validations/UserCreate.form.validations"
 
 import * as constants from "../../constants/User"
 
@@ -38,31 +43,44 @@ const UserCreate = () => {
             }
         })
         .catch(error => {
-            console.log(error)
-            // agregar notificacion error
+            Alert({
+                action: 'Error',
+                message: "La data relacionada no ha podido ser recopilada."
+            })
         })
     }, [])
 
     const handleChange = event => {
         const { name, value } = event.target
 
-        setUser((prevState) => ({
+        setUser(prevState => ({
             ...prevState,
             [name]: value
         }))
     }
 
+    const handleChangeSelect2 = (name, event) => {
+        setUser(prevState => ({
+            ...prevState,
+            [name]: event ? event.value : null
+        }))
+    }
+
+    const handleToggle = name => {
+        setUser(prevState => ({
+            ...prevState,
+            [name]: !prevState[name]
+        }))
+    }
+
     const handleSubmit = event => {
         event.preventDefault()
-
-        // agregar validaciones
     
-        // const errors = validateForm(user)
+        const errors = validateForm(user)
     
-        // setErrors(errors)
+        setErrors(errors)
     
-        // if (!Object.keys(errors).length) {
-    
+        if (!Object.keys(errors).length) {
             let values = Object.assign({} , user)
 
             if (id) {
@@ -71,37 +89,40 @@ const UserCreate = () => {
             }
 
             submitForm(values)
-    
-        // } else {
-          // alerta de datos vacios...
-          // agregar notificacion errores vacios
-        // }
+        } else {
+            Alert({
+                action: 'Error',
+                message: "Es necesario agregar los datos requeridos."
+            })
+        }
     }
 
     const submitForm = values => {
         let baseURL = id ? `/api/users/${id}` : '/api/users'
+        let successful = id ? constants.edit : constants.create
+        let failed = id ? constants.failedEdit : constants.failedCreate
 
         axios.post(baseURL, values)
             .then(response => {
                 if (response.status == 200) {
-                    // agregar notificacion success
-
                     if (!id) {
                         history.push(`/usuarios/${response.data.userId}/editar`)
                     }
+
+                    Alert(successful)
                 }
             })
             .catch(error => {
-                console.log(error)
-                // agregar notificacion error
+                Alert(failed)
             })
     }
 
     const actionText = id ? "GUARDAR" : "CREAR"
+    const optionSelected = user.SalesRep_id ? represents.find(option => option.value == user.SalesRep_id) : null
 
     return (
         <>
-            <BreadCrumb 
+            <BreadCrumb
                 links={[
                     { path: '/usuarios', name: 'Lista de usuarios' },
                     { path: '', name: `${id ? 'Editar' : 'Crear'}` }
@@ -126,7 +147,7 @@ const UserCreate = () => {
                                 Nombre
                             </label>
 
-                            <input type="text" name="name" id="name" value={user.name} onChange={handleChange} autoComplete="off" placeholder="Nombre" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+                            <input type="text" name="name" id="name" value={user.name} onChange={handleChange} autoComplete="off" placeholder="Nombre" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 text-sm" />
 
                             {errors["name"] && <ErrorView message={errors["name"]} />}
                         </div>
@@ -136,7 +157,7 @@ const UserCreate = () => {
                                 Nombre de usuario
                             </label>
 
-                            <input type="text" name="username" id="username" value={user.username} onChange={handleChange} autoComplete="off" placeholder="Nombre de usuario" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+                            <input type="text" name="username" id="username" value={user.username} onChange={handleChange} autoComplete="off" placeholder="Nombre de usuario" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 text-sm" />
 
                             {errors["username"] && <ErrorView message={errors["username"]} />}
                         </div>
@@ -146,7 +167,7 @@ const UserCreate = () => {
                                 Correo electrónico
                             </label>
 
-                            <input type="email" name="email" id="email" value={user.email} onChange={handleChange} autoComplete="off" placeholder="Correo electrónico" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+                            <input type="email" name="email" id="email" value={user.email} onChange={handleChange} autoComplete="off" placeholder="Correo electrónico" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 text-sm" />
                         
                             {errors["email"] && <ErrorView message={errors["email"]} />}
                         </div>
@@ -156,16 +177,62 @@ const UserCreate = () => {
                                 Contraseña
                             </label>
 
-                            <input type="password" name="password" id="password" value={user.password} onChange={handleChange} autoComplete="off" placeholder="Contraseña" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+                            <input type="password" name="password" id="password" value={user.password} onChange={handleChange} autoComplete="off" placeholder="Contraseña" className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 text-sm" />
                         
                             {errors["password"] && <ErrorView message={errors["password"]} />}
                         </div>
 
-                        {/* AGREGAR SELECT SALES REP */}
+                        <div className="col-span-6 sm:col-span-3 space-y-2">
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                Vendedor
+                            </label>
 
-                        {/* AGREGAR CHECKBOX TYPE USER */}
+                            <Select
+                                isClearable
+                                styles={{ menu: base => ({ ...base, fontSize: '0.875rem' }) }}
+                                className="block max-w-lg w-full shadow-sm text-sm"
+                                menuPortalTarget={document.body} 
+                                menuPosition="fixed"
+                                isSearchable={true}
+                                menuShouldBlockScroll={true}
+                                name="SalesRep_id"
+                                value={optionSelected}
+                                placeholder="Seleccionar"
+                                noOptionsMessage={inputValue =>  "No se encuentran opciones"}
+                                onChange={event => handleChangeSelect2("SalesRep_id", event)}
+                                options={represents}
+                                theme={theme => ({
+                                    ...theme,
+                                    fontSize: 8,
+                                    borderRadius: 7,
+                                    colors: {
+                                        ...theme.colors,
+                                        primary: '#A3A3A3',
+                                        primary25: 'skyblue'
+                                    },
+                                })}
+                            />
+                        </div>
 
-                        {/* AGREGAR CHECKBOX DIGITAR PRECIO */}
+                        <div className="col-span-6 sm:col-span-3 space-y-2">
+                            <ToggleButton 
+                                canSee={true}
+                                name="type_user"
+                                value={user.type_user}
+                                text="Administrador"
+                                onClick={handleToggle}
+                            />
+                        </div>
+
+                        <div className="col-span-6 sm:col-span-3 space-y-2">
+                            <ToggleButton 
+                                canSee={true}
+                                name="enter_price"
+                                value={user.enter_price}
+                                text="Digitar precio"
+                                onClick={handleToggle}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

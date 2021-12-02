@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import axios from 'axios'
 
 import { withLayout } from './Layout'
+import { Alert } from "../../components/notifications/Alert"
 
 const Login = () => {
     const [usuario, setUsuario] = useState({ username: '', password: '' })
@@ -51,7 +52,10 @@ const Login = () => {
                 }
             })
             .catch(error => {
-                console.log(error)
+                Alert({
+                    action: 'Error',
+                    message: "Error al querer iniciar sesión."
+                })
             })
     }
 

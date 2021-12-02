@@ -5,6 +5,7 @@ import axios from "axios"
 import { BreadCrumb } from "../../components/BreadCrumbs/BreadCrumb"
 import { Title } from "../../components/Typography/Title"
 import { InputSearch } from "../../components/Fields/InputSearch"
+import { Alert } from "../../components/notifications/Alert"
 
 import * as constants from "../../constants/indexes/Product"
 import * as styles from "../../constants/TableStyles"
@@ -19,7 +20,10 @@ const ProductList = () => {
             setData(res.data.data)
         })
         .catch(error => {
-            console.log(error)
+            Alert({
+                action: 'Error',
+                message: "Error al obtener los datos de productos."
+            })
         })
     }, [])
 
@@ -32,7 +36,10 @@ const ProductList = () => {
             setLoading(false)
         })
         .catch(error => {
-            console.log(error)
+            Alert({
+                action: 'Error',
+                message: "Error al realizar la busqueda de productos."
+            })
         })
     }
 

@@ -1,20 +1,15 @@
 import React, { useContext } from 'react'
-import { MenuIcon, LogoutIcon } from '@heroicons/react/outline'
-import { useHistory } from "react-router-dom"
-import axios from 'axios'
+import { MenuIcon } from '@heroicons/react/outline'
+import { PlusCircleIcon } from '@heroicons/react/solid'
+import { useLocation, Link } from "react-router-dom"
 
 import { SidebarContext } from '../context/SidebarContext'
 
 const Header = () => {
   const { toggleSidebar } = useContext(SidebarContext)
-  const history = useHistory()
+  const location = useLocation()
 
-  const logout = () => {
-    axios.post('api/logout').then(() => {
-      localStorage.removeItem('user')
-      history.push("/login")
-    })
-  }
+  const canSee = location.pathname != "/pedidos/crear" && location.pathname != "/pedidos"
 
   return (
     <header className="z-40 py-4 bg-white shadow-bottom border-b">
@@ -23,13 +18,15 @@ const Header = () => {
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
 
-        {/*<ul className="flex justify-end items-center flex-shrink-0 space-x-6">
-          <li className="flex">
-            <button className="rounded-md focus:outline-none focus:shadow-outline-purple" onClick={logout} aria-label="Toggle logout">
-              <LogoutIcon className="w-5 h-5" aria-hidden="true" />
-            </button>
-          </li>
-        </ul>*/}
+        { canSee &&
+          <ul className="flex justify-end items-center flex-shrink-0 space-x-6">
+            <li className="flex">
+              <Link to="/pedidos/crear" className="rounded-md focus:outline-none focus:shadow-outline-purple">
+                <PlusCircleIcon className="w-8 h-8 text-green-500" aria-hidden="true" />
+              </Link>
+            </li>
+          </ul>
+        }
       </div>
     </header>
   )

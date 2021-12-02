@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 
 import { BreadCrumb } from "../../components/BreadCrumbs/BreadCrumb"
+import { Alert } from "../../components/notifications/Alert"
 
 import * as constants from "../../constants/Product"
 
@@ -18,7 +19,10 @@ const ProductShow = () => {
             }
         })
         .catch(error => {
-            console.log(error)
+            Alert({
+                action: 'Error',
+                message: "Error al obtener los datos del producto."
+            })
         })
     }, [])
 

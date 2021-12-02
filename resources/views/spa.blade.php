@@ -20,6 +20,8 @@
     </head>
     <body class="antialiased">
         <div id="root"></div>
+        <div id="simple-alert"></div>
+        <div id="alert-container"></div>
 
         <script src="{{ mix('js/index.js') }}"></script>
     </body>

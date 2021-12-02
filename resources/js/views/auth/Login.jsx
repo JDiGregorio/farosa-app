@@ -4,9 +4,12 @@ import axios from 'axios'
 
 import { withLayout } from './Layout'
 import { Alert } from "../../components/notifications/Alert"
+import { ErrorView } from "../../components/Typography/ErrorView"
+
+import { validateForm } from "../../validations/LoginCreate.form.validations"
 
 const Login = () => {
-    const [usuario, setUsuario] = useState({ username: '', password: '' })
+    const [usuario, setUsuario] = useState({ username: "", password: "" })
     const [errors, setErrors] = useState({})
     const history = useHistory()
 
@@ -26,19 +29,24 @@ const Login = () => {
     const handleSubmit = event => {
         event.preventDefault()
 
-        // const errors = validateForm(usuario)
+        const errors = validateForm(usuario)
 
-        // setErrors(errors)
+        setErrors(errors)
 
-        // if (!Object.keys(errors).length) {
-        const formData = new FormData()
+        if (!Object.keys(errors).length) {
+            const formData = new FormData()
 
-        Object.entries(usuario).forEach(([key, value]) => {
-            formData.append(key, value)
-        })
+            Object.entries(usuario).forEach(([key, value]) => {
+                formData.append(key, value)
+            })
 
-        submitForm(formData)
-        // }
+            submitForm(formData)
+        } else {
+            Alert({
+                action: "Error",
+                message: "Es necesario agregar los datos requeridos."
+            })
+        }
     }
 
     const submitForm = formData => {
@@ -52,10 +60,26 @@ const Login = () => {
                 }
             })
             .catch(error => {
-                Alert({
-                    action: 'Error',
-                    message: "Error al querer iniciar sesión."
-                })
+                if (error.response.status === 422) {
+                    Alert({
+                        action: "Error",
+                        message: "Los datos proporcionados no son válidos. Nombre de usuario o contraseña invalido."
+                    })
+                }
+
+                if (error.response.status == 429) {
+                    Alert({
+                        action: "Error",
+                        message: "Ha realizado muchos intentos fallidos, por su seguridad debe esperar un momento."
+                    })
+                }
+
+                if (error.response.status == 500) {
+                    Alert({
+                        action: "Error",
+                        message: "Error inesperado, por favor contacte al administrador del sistema."
+                    })
+                }
             })
     }
 
@@ -67,6 +91,8 @@ const Login = () => {
                 </label>
 
                 <input type="text" name="username" id="username" onChange={handleChangeInput} placeholder="Nombre de usuario" required className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+            
+                {errors["username"] && <ErrorView message={errors["username"]} />}
             </div>
 
             <div className="space-y-1">
@@ -75,6 +101,8 @@ const Login = () => {
                 </label>
 
                 <input type="password" name="password" id="password" onChange={handleChangeInput} placeholder="Contraseña" required className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+            
+                {errors["password"] && <ErrorView message={errors["password"]} />}
             </div>
 
             <hr className="my-8" />

@@ -28,7 +28,7 @@ export const Alert = props => {
 
     setTimeout(() => {
         cleanup()
-    }, 5000)
+    }, 7000)
 
     ReactDOM.render(
         <div className="z-50 fixed top-16 mx-4 sm:right-7 rounded-lg shadow-2xl">

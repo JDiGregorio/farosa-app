@@ -1,5 +1,5 @@
-import React, { useContext, Suspense, useEffect, useState, lazy } from 'react'
-import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom'
+import React, { useContext, Suspense, useEffect, lazy } from 'react'
+import { Switch, Route, useLocation, useHistory } from 'react-router-dom'
 
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
@@ -15,7 +15,8 @@ const Layout = () => {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext)
   let location = useLocation()
 
-  const [user] = useState(localStorage.getItem("user") ? localStorage.getItem("user") : null)
+  const user = localStorage.getItem("user") ? localStorage.getItem("user") : null
+
   const history = useHistory()
 
   useEffect(() => {

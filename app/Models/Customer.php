@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
+use App\Scopes\CustomerScope;
+
 class Customer extends Model
 {
     use HasFactory;
@@ -52,6 +54,11 @@ class Customer extends Model
     /*-------------------------------------------------------------------------
     | FUNCTIONS
     |------------------------------------------------------------------------*/
+    
+    protected static function booted()
+	{
+		static::addGlobalScope(new CustomerScope);
+    }
 
     /*-------------------------------------------------------------------------
     | RELATIONS

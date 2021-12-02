@@ -1,12 +1,15 @@
 import React, { useContext } from 'react'
 import { MenuIcon } from '@heroicons/react/outline'
 import { PlusCircleIcon } from '@heroicons/react/solid'
-import { Link } from "react-router-dom"
+import { useLocation, Link } from "react-router-dom"
 
 import { SidebarContext } from '../context/SidebarContext'
 
 const Header = () => {
   const { toggleSidebar } = useContext(SidebarContext)
+  const location = useLocation()
+
+  const canSee = location.pathname != "/pedidos/crear" && location.pathname != "/pedidos"
 
   return (
     <header className="z-40 py-4 bg-white shadow-bottom border-b">
@@ -15,13 +18,15 @@ const Header = () => {
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
 
-        <ul className="flex justify-end items-center flex-shrink-0 space-x-6">
-          <li className="flex">
-            <Link to="/pedidos/crear" className="rounded-md focus:outline-none focus:shadow-outline-purple">
-              <PlusCircleIcon className="w-8 h-8 text-green-500" aria-hidden="true" />
-            </Link>
-          </li>
-        </ul>
+        { canSee &&
+          <ul className="flex justify-end items-center flex-shrink-0 space-x-6">
+            <li className="flex">
+              <Link to="/pedidos/crear" className="rounded-md focus:outline-none focus:shadow-outline-purple">
+                <PlusCircleIcon className="w-8 h-8 text-green-500" aria-hidden="true" />
+              </Link>
+            </li>
+          </ul>
+        }
       </div>
     </header>
   )

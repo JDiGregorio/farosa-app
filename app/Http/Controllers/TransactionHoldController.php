@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\TransactionHold;
+use App\Models\Customer;
 
 use App\Http\Resources\Transactions\TransactionHoldIndexResource;
 use App\Http\Resources\Transactions\TransactionHoldShowResource;
@@ -63,5 +64,20 @@ class TransactionHoldController extends Controller
     public function destroy(TransactionHold $transactionHold)
     {
         $transactionHold->delete();
+    }
+
+    public function getRelatedData(Request $request)
+    {
+        $response = [
+            'customers' => Customer::all()->map(function($item) {
+                return [
+                    'value' => $item->ID,
+                    'label' => $item->FirstName,
+                    'available' => $item->available
+                ];
+            })
+        ];
+
+        return $response;
     }
 }

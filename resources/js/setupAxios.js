@@ -13,11 +13,8 @@ const setupAxios = (axios) => {
     return response
   }, error => {
     if (error.response.status == 401) {
-      axios.post('api/logout')
-        .then(() => {
-          localStorage.removeItem('user')
-          history.push("/login")
-        })
+      localStorage.removeItem('user')
+      history.push("/login")
     }
 
     return Promise.reject(error)

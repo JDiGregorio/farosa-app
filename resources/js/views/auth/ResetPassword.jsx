@@ -68,7 +68,7 @@ const ResetPassword = () => {
                     Contraseña
                 </label>
 
-                <input type="password" name="password" id="password" onChange={handleChangeInput}  required placeholder="Contraseña" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" />
+                <input type="password" name="password" id="password" onChange={handleChangeInput}  required placeholder="Contraseña" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none text-sm" />
             </div>
 
             <div className="space-y-1">
@@ -76,10 +76,10 @@ const ResetPassword = () => {
                     Confirmar contraseña
                 </label>
 
-                <input type="password" name="password_confirmation" id="password-confirm" onChange={handleChangeInput} required placeholder="Confirmar contraseña" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" />
+                <input type="password" name="password_confirmation" id="password-confirm" onChange={handleChangeInput} required placeholder="Confirmar contraseña" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none text-sm" />
             </div>
 
-            <button type="submit" onClick={handleSubmit} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+            <button type="submit" onClick={handleSubmit} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 focus:outline-none">
                 Cambiar contraseña
             </button>
         </>

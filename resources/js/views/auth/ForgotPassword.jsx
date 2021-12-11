@@ -32,7 +32,7 @@ const ForgotPassword = () => {
                     Correo electrónico
                 </label>
 
-                <input type="email" name="email" id="email" onChange={({target}) => setEmail(target.value)} placeholder="Correo electrónico" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-gray-100 focus:border-red-500 focus:z-10 sm:text-sm" />
+                <input type="email" name="email" id="email" onChange={({target}) => setEmail(target.value)} placeholder="Correo electrónico" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none text-sm" />
             </div>
 
             <div className="flex items-right justify-end">
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
                 </div>
             </div>
 
-            <button type="submit" onClick={handleSubmit} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+            <button type="submit" onClick={handleSubmit} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 focus:outline-none">
                 Enviar enlace de verificación
             </button>
         </>

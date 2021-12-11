@@ -90,7 +90,7 @@ const Login = () => {
                     Nombre de usuario
                 </label>
 
-                <input type="text" name="username" id="username" onChange={handleChangeInput} placeholder="Nombre de usuario" required className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+                <input type="text" name="username" id="username" onChange={handleChangeInput} placeholder="Nombre de usuario" required className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none text-sm" />
             
                 {errors["username"] && <ErrorView message={errors["username"]} />}
             </div>
@@ -100,14 +100,14 @@ const Login = () => {
                     Contraseña
                 </label>
 
-                <input type="password" name="password" id="password" onChange={handleChangeInput} placeholder="Contraseña" required className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-100 focus:border-gray-300 sm:text-sm" />
+                <input type="password" name="password" id="password" onChange={handleChangeInput} placeholder="Contraseña" required className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none text-sm" />
             
                 {errors["password"] && <ErrorView message={errors["password"]} />}
             </div>
 
             <hr className="my-8" />
 
-            <button type="submit" onClick={handleSubmit} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none">
+            <button type="submit" onClick={handleSubmit} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 focus:outline-none">
                 Ingresar
             </button>
         </>

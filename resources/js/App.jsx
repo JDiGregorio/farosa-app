@@ -2,9 +2,12 @@ import React, { lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import AccessibleNavigationAnnouncer from './components/AccessibleNavigationAnnouncer'
-
+import  axios from 'axios' 
 const Layout = lazy(() => import('./containers/Layout'))
 const Login = lazy(() => import('./views/auth/Login'))
+import setupAxios from './setupAxios'
+
+setupAxios(axios)
 
 const App = () => {
   return (

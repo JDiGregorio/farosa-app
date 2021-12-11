@@ -1,5 +1,5 @@
 
-import { Logout } from "../services/authService"
+
 
 const setupAxios = (axios) => {
   axios.interceptors.request.use(
@@ -13,9 +13,11 @@ const setupAxios = (axios) => {
     return response
   }, error => {
     if (error.response.status == 401) {
-      Logout().then(() => {
-        localStorage.removeItem('user')
-      })
+      axios.post('api/logout')
+        .then(() => {
+          localStorage.removeItem('user')
+          history.push("/login")
+        })
     }
 
     return Promise.reject(error)

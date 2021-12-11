@@ -19,22 +19,29 @@ const SidebarContent = () => {
 
   return (
     <div className="h-full flex flex-col justify-between">
-      <div className="py-4 text-gray-500">
-        <a className="ml-6 text-lg font-bold text-gray-800" href="#">
-          FAROSA
-        </a>
+      <div className="space-y-2">
+        <div className="mt-3.5 flex items-center justify-center space-x-3">
+          <div className="w-9 h-9 relative flex justify-center items-center rounded-full bg-orange-400 text-lg text-white uppercase">
+            {user &&  user.name.charAt(0)}
+          </div>
+          <h1 className="text-md font-bold text-gray-500 uppercase">
+            {user && user.name}
+          </h1>
+        </div>
 
-        <ul className="mt-6">
+        <hr />
+
+        <ul>
           {routes(user).map(route => (
             <div key={route.name}>
               { route.canSee ? (
                 <li className="relative px-6 py-3" key={route.name}>
                   <NavLink exact to={route.path} className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 uppercase" activeClassName="text-gray-800">
                     <Route path={route.path} exact={route.exact}>
-                      <span className="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                      <span className="absolute inset-y-0 left-0 w-1 bg-orange-500 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                     </Route>
                   
-                    <span className="ml-4">
+                    <span className="ml-4 text-gray-500">
                       {route.name}
                     </span>
                   </NavLink>

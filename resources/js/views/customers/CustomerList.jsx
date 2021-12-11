@@ -53,7 +53,7 @@ const CustomerList = () => {
                 ]} 
             />
 
-            <div className="mt-6 flex flex-col space-y-6 sm:flex-row sm:justify-between sm:items-center">
+            <div className="mt-2 flex flex-col space-y-6 sm:flex-row sm:justify-between sm:items-center">
                 <Title>
                     Clientes
                 </Title>

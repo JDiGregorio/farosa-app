@@ -80,14 +80,6 @@ const OrderCreate = () => {
         }))
     }
 
-    const handleModalProduct = () => {
-        setModalVisible(true)
-    
-        // if (!user.userBanks.some(item => item.selected)) {
-          // setBankInformation(bankInformation)
-        // }
-    }
-
     const handleRowClicked = row => {
         setProductTemp(prevState => ({
             ...prevState,
@@ -125,7 +117,7 @@ const OrderCreate = () => {
     }
 
     const handleChangeRadio = event => {
-        const { name, value, id } = event.currentTarget
+        const { value, id } = event.currentTarget
 
         Object.entries(pressRadio).map(([key, value]) => {
             setPressRadio(prevState => ({
@@ -148,7 +140,7 @@ const OrderCreate = () => {
     }
 
     const handleInputPrice = event => {
-        const { name, value } = event.target
+        const { value } = event.target
 
         let price = value != "" ? parseFloat(value) : 0
 
@@ -414,11 +406,14 @@ const OrderCreate = () => {
     
     const cancelActionModal = event => {
         return new Promise((resolve, reject) => {
-          setErrors({})
+            setProductTemp(constants.tempProduct)
+            setPressRadio(constants.defaultRadio)
+            setStep(1)
+            setShowInputPrice(false)
+            setErrors({})
+            setModalErrors({})
     
-          setProductTemp(constants.tempProduct)
-    
-          resolve(event)
+            resolve(event)
         })
     }
 
@@ -484,9 +479,9 @@ const OrderCreate = () => {
                     Pedido
                 </Title>
                 
-                <Button onClick={handleSubmit}>
+                <button onClick={handleSubmit} className="align-bottom inline-flex items-center justify-center cursor-pointer font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-green-600 border border-transparent">
                     CREAR
-                </Button>
+                </button>
             </div>
 
             <div className="my-6 p-6 flex flex-col bg-white shadow-lg rounded-lg space-y-2">
@@ -577,7 +572,7 @@ const OrderCreate = () => {
                                 </label>
 
                                 { order.products.length < 13 ? (
-                                    <button type="button" onClick={() => handleModalProduct()} className="inline-flex items-center uppercase px-3 py-2 shadow-xs text-xs font-semibold rounded-md text-gray-600 bg-gray-100 border border-gray-200 focus:outline-none">
+                                    <button type="button" onClick={() => setModalVisible(true)} className="inline-flex items-center uppercase px-3 py-2 shadow-xs text-xs font-semibold rounded-md text-gray-600 bg-gray-100 border border-gray-200 focus:outline-none">
                                         agregar
                                         <PlusIcon className="ml-2 -mr-0.5 h-4 w-4" />
                                     </button>

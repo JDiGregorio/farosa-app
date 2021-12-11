@@ -89,7 +89,7 @@ export const columns = handleDeleteRow => [
             return (
                 <div className="flex justify-center items-center">
                     <button onClick={() => handleDeleteRow(row.ID)} className="align-bottom inline-flex items-center justify-center cursor-pointer px-3 py-1 rounded-md focus:outline-none active:bg-transparent">
-                        <TrashIcon className="w-5 h-5 text-red-700" aria-hidden="true" />
+                        <TrashIcon className="w-5 h-5 text-red-800" aria-hidden="true" />
                     </button>
                 </div>
             )
@@ -124,8 +124,7 @@ export const columnsProductView = [
     {
         name: 'Descripción',
         selector: row => row.Description,
-        sortable: false,
-        width: '50%'
+        sortable: false
     },
     {
         name: 'Qty',

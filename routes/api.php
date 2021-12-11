@@ -24,7 +24,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users/related-data', [App\Http\Controllers\UserController::class, 'getRelatedData']);
     Route::get('/transactions/related-data', [App\Http\Controllers\TransactionHoldController::class, 'getRelatedData']);
 
-    Route::resource('dashboard', DashboardController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('items', ItemController::class);
     Route::resource('transactions', TransactionHoldController::class);

@@ -135,9 +135,9 @@ const UserCreate = () => {
                     Usuario
                 </Title>
                 
-                <Button onClick={handleSubmit}>
+                <button onClick={handleSubmit} className="align-bottom inline-flex items-center justify-center cursor-pointer font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-green-600 border border-transparent">
                     {actionText}
-                </Button>
+                </button>
             </div>
 
             <div className="my-6 p-6 flex flex-col bg-white shadow-lg rounded-lg space-y-2">

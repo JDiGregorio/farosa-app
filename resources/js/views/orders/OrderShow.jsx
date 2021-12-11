@@ -48,14 +48,6 @@ const OrderShow = () => {
             />
 
             <div className="my-6 grid grid-cols-1 gap-6">
-                <div className="relative rounded-lg border border-gray-200 bg-white px-6 py-5 shadow-lg flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                    <div className="w-full flex justify-between">
-                        <p className="text-sm font-semibold text-gray-700 truncate">
-                            {order.customer}
-                        </p>
-                    </div>
-                </div>
-
                 <div className="bg-white shadow-lg overflow-hidden border border-gray-200 rounded-lg">
                     <dl>
                         <div className="bg-gray-50 px-4 py-5 grid grid-cols-2 gap-4 px-6">
@@ -99,24 +91,26 @@ const OrderShow = () => {
                         ) : (null)}
                     </dl>
                 </div>
+                
+                <div className="space-y-2">
+                    <div className="relative">
+                        <label className="text-sm text-gray-500 font-semibold">
+                            Productos
+                        </label>
+                    </div>
 
-                <div className="relative">
-                    <label className="text-sm text-gray-500 font-semibold">
-                        Productos
-                    </label>
-                </div>
-
-                <div className="overflow-y-auto h-auto bg-white shadow-lg border border-gray-200 rounded-lg">
-                    <DataTable
-                        responsive={true}
-                        customStyles={styles.customStyle}
-                        loading={false}
-                        fixedHeader={true}
-                        persistTableHead={true}
-                        columns={constants.columnsProductView}
-                        data={order.products}
-                        noDataComponent={<WhithoutRecordView text="No hay datos disponibles" />}
-                    />
+                    <div className="overflow-y-auto h-auto bg-white shadow-lg border border-gray-200 rounded-lg">
+                        <DataTable
+                            responsive={true}
+                            customStyles={styles.customStyle}
+                            loading={false}
+                            fixedHeader={true}
+                            persistTableHead={true}
+                            columns={constants.columnsProductView}
+                            data={order.products}
+                            noDataComponent={<WhithoutRecordView text="No hay datos disponibles" />}
+                        />
+                    </div>
                 </div>
 
                 <div className="bg-white shadow-lg overflow-hidden border border-gray-200 rounded-lg">

@@ -1,6 +1,6 @@
-import { AlertConfirm } from "../components/notifications/AlertConfirm"
 import axios from "axios"
 
+import { AlertConfirm } from "../components/notifications/AlertConfirm"
 import { Alert } from "../components/notifications/Alert"
 
 export const handleDelete = (module, redirect, id) => {
@@ -29,4 +29,12 @@ export const handleDelete = (module, redirect, id) => {
                 })
         }
     })
+}
+
+export const numberFormat = number => {
+    return new Intl.NumberFormat('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2
+    }).format(number)
 }

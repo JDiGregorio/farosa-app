@@ -16,9 +16,18 @@ class TransactionHoldShowResource extends JsonResource
     {
         return [
             'id' => $this->ID,
-            'itemLookupCode' => $this->ItemLookupCode,
-            'description' => $this->Description,
-            'quantity' => $this->Quantity,
+            'customer' => $this->CustomerID ? ($this->customer ? $this->customer->FirstName : "-") : "-",
+            'date' => $this->TransactionTime,
+            'holdComment' => $this->HoldComment,
+            'available' => $this->CustomerID ? ($this->customer ? $this->customer->available : 0.00) : 0.00,
+            'products' => $this->products->map(function($item) {
+                return [
+                    'ID' => $item->ID,
+                    'Description' => $item->Description,
+                    'QuantityPurchased' => (float)number_format($item->QuantityPurchased, 2, '.', ''),
+                    'Price' => (float)number_format($item->Price, 2, '.', '')
+                ];
+            })
         ];
     }
 }

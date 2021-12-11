@@ -13,6 +13,7 @@ import { Alert } from "../../components/notifications/Alert"
 import { validateForm } from "../../validations/UserCreate.form.validations"
 
 import * as constants from "../../constants/User"
+import * as defaults from "../../constants/DefaultAlert"
 
 const UserCreate = () => {
     const [represents, setRepresents] = useState([])
@@ -99,8 +100,8 @@ const UserCreate = () => {
 
     const submitForm = values => {
         let baseURL = id ? `/api/users/${id}` : '/api/users'
-        let successful = id ? constants.edit : constants.create
-        let failed = id ? constants.failedEdit : constants.failedCreate
+        let successful = id ? defaults.edit : defaults.create
+        let failed = id ? defaults.failedEdit : defaults.failedCreate
 
         axios.post(baseURL, values)
             .then(response => {

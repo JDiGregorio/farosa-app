@@ -16,7 +16,7 @@ class TransactionHoldIndexResource extends JsonResource
     {
         return [
             'id' => $this->ID,
-            'customerId' => $this->CustomerID,
+            'customerId' => $this->CustomerID ? ($this->customer ? $this->customer->FirstName : "-") : "-",
             'holdComment' => $this->HoldComment
         ];
     }

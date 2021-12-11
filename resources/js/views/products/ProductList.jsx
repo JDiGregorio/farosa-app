@@ -6,6 +6,7 @@ import { BreadCrumb } from "../../components/BreadCrumbs/BreadCrumb"
 import { Title } from "../../components/Typography/Title"
 import { InputSearch } from "../../components/Fields/InputSearch"
 import { Alert } from "../../components/notifications/Alert"
+import { WhithoutRecordView } from "../../components/Typography/WhithoutRecordsView"
 
 import * as constants from "../../constants/indexes/Product"
 import * as styles from "../../constants/TableStyles"
@@ -32,6 +33,7 @@ const ProductList = () => {
 
         axios.get(`/api/items?Description[like]=%${event.target.value}%`)
         .then(res => {
+            console.log(res.data.data)
             setData(res.data.data)
             setLoading(false)
         })
@@ -67,6 +69,7 @@ const ProductList = () => {
                     defaultSortFieldId="description"
                     loading={loading}
                     columns={constants.columns}
+                    noDataComponent={<WhithoutRecordView />}
                     data={data}
                     pagination
                 />

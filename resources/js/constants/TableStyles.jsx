@@ -9,7 +9,8 @@ export const customStyle = {
 
     cells: {
         style: {
-            minHeight: '72px'
+            width: 'auto',
+            minHeight: '40px'
         }
     },
 

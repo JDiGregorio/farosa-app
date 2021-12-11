@@ -6,6 +6,7 @@ import { BreadCrumb } from "../../components/BreadCrumbs/BreadCrumb"
 import { Title } from "../../components/Typography/Title"
 import { InputSearch } from "../../components/Fields/InputSearch"
 import { Alert } from "../../components/notifications/Alert"
+import { WhithoutRecordView } from "../../components/Typography/WhithoutRecordsView"
 
 import * as constants from "../../constants/indexes/Customer"
 import * as styles from "../../constants/TableStyles"
@@ -67,6 +68,7 @@ const CustomerList = () => {
                     defaultSortFieldId="firstName"
                     loading={loading}
                     columns={constants.columns}
+                    noDataComponent={<WhithoutRecordView />}
                     data={data}
                     pagination
                 />

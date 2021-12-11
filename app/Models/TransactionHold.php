@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
+use App\Scopes\TransactionHoldScope;
+
 class TransactionHold extends Model
 {
     use HasFactory;
@@ -15,7 +17,7 @@ class TransactionHold extends Model
 
     protected $primaryKey = 'ID';
 
-    protected $appends = ['transactionHoldEntries'];
+    protected $appends = ['products'];
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +28,7 @@ class TransactionHold extends Model
         'StoreID', 'TransactionType', 'HoldComment', 'RecallID', 'Comment', 'PriceLevel',					   
         'DiscountMethod', 'DiscountPercent', 'Taxable', 'CustomerID', 'DeltaDeposit',
         'DepositOverride', 'DepositPrevious', 'PaymentsPrevious', 'TaxPrevious', 'SalesRepID',
-        'ShipToID', 'TransactionTime', 'ExpirationOrDueDate', 'ReturnMode', 'ReferenceNumber',
+        'ShipToID', 'ExpirationOrDueDate', 'ReturnMode', 'ReferenceNumber',
         'ShippingChargePurchased', 'ShippingChargeOverride', 'ShippingServiceID',
         'ShippingTrackingNumber', 'ShippingNotes', 'DBTimeStamp', 'ReasonCodeID',
         'ExchangeID', 'ChannelType', 'DefaultDiscountReasonCodeID',
@@ -64,6 +66,8 @@ class TransactionHold extends Model
 
     protected static function booted()
 	{
+		static::addGlobalScope(new TransactionHoldScope);
+
 		self::creating(function($model) {
 			$default_cero = 0;
 			$default_uno = 1;
@@ -155,6 +159,11 @@ class TransactionHold extends Model
 		return $this->hasMany(TransactionHoldEntry::class, 'ItemID');
 	}
 
+	public function customer()
+	{
+		return $this->belongsTo(Customer::class, 'CustomerID');
+	}
+
     /*------------------------------------------------------------------------
     | SCOPES
 	|-----------------------------------------------------------------------*/
@@ -162,6 +171,11 @@ class TransactionHold extends Model
     /*-------------------------------------------------------------------------
 	| ACCESORS
     |------------------------------------------------------------------------*/
+
+	public function getProductsAttribute()
+	{
+		return $this->transactionHoldEntries()->get();
+	}
 
     /*-------------------------------------------------------------------------
     | MUTATORS

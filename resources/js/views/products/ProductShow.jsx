@@ -30,7 +30,7 @@ const ProductShow = () => {
         <>
             <BreadCrumb 
                 links={[
-                    { path: '/productos', name: 'Productos' },
+                    { path: '/productos', name: 'Lista de productos' },
                     { path: '', name: 'Vista previa' }
                 ]} 
             />

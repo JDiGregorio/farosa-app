@@ -20,7 +20,7 @@ class TransactionHoldShowResource extends JsonResource
             'date' => $this->TransactionTime,
             'holdComment' => $this->HoldComment,
             'available' => $this->CustomerID ? ($this->customer ? $this->customer->available : 0.00) : 0.00,
-            'products' => $this->products->map(function($item) {
+            'products' => collect($this->products)->map(function($item) {
                 return [
                     'ID' => $item->ID,
                     'Description' => $item->Description,

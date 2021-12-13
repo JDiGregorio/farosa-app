@@ -40,7 +40,7 @@ class TransactionHold extends Model
      *
      * @var array
      */
-    protected $visible = [];
+    protected $visible = ['products'];
 
 	/**
      * The attributes that should be hidden for serialization.
@@ -107,42 +107,6 @@ class TransactionHold extends Model
 			$model->DefaultTaxChangeReasonCodeID = $default_cero;		
 			$model->BatchNumber = $default_tres;
         });
-
-        /*self::updating(function($model)
-		{
-			$default_cero = 0;
-			$default_uno = 1;
-			$default_dos = 2;
-			$default_tres = 3;
-			$default_verdadero = 1;
-			$default_falso = 0;
-
-			$model->StoreID = $default_cero;
-			$model->TransactionType = $default_uno;
-			$model->RecallID = $default_cero;
-			$model->PriceLevel = $default_cero;		
-			$model->DiscountMethod = $default_dos;		
-			$model->DiscountPercent = $default_cero;		
-			$model->Taxable = $default_verdadero;		
-			$model->DeltaDeposit = $default_cero;		
-			$model->DepositOverride = $default_falso;		
-			$model->DepositPrevious = $default_cero;		
-			$model->PaymentsPrevious = $default_cero;		
-			$model->TaxPrevious = $default_cero;		
-			$model->ShipToID = $default_cero;		
-			$model->ExpirationOrDueDate = $default_cero;		
-			$model->ReturnMode = $default_falso;		
-			$model->ShippingChargePurchased = $default_cero;		
-			$model->ShippingChargeOverride = $default_falso;		
-			$model->ShippingServiceID = $default_cero;		
-			$model->ReasonCodeID = $default_cero;		
-			$model->ExchangeID = $default_cero;		
-			$model->ChannelType = $default_cero;		
-			$model->DefaultDiscountReasonCodeID = $default_cero;		
-			$model->DefaultReturnReasonCodeID = $default_cero;		
-			$model->DefaultTaxChangeReasonCodeID = $default_cero;		
-			$model->BatchNumber = $default_tres;
-		});*/
 
         self::deleting(function($model)
 		{

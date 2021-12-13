@@ -57,7 +57,6 @@ class TransactionHoldController extends Controller
         return response()->json(['orderId' => $order->ID]);
     }
 
-
     /**
      * Display the specified resource.
      *
@@ -65,8 +64,9 @@ class TransactionHoldController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(TransactionHold $transaction)
-    {
-        return new TransactionHoldShowResource($transaction);
+    {   
+        $order = TransactionHold::find($transaction->ID);
+        return new TransactionHoldShowResource($order);
     }
 
     /**

@@ -133,7 +133,7 @@ const OrderShow = () => {
                                 Detalle de pedido
                             </dt>
                             <dd className="text-sm text-gray-900 col-span-2 mt-0">
-                                L. {order.holdComment}
+                                {order.holdComment}
                             </dd>
                         </div>
                     </dl>

@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        $array = [
+        $users = [
             [
                 'name' => 'José Di Gregorio',
                 'email' => 'jdgregorio07@gmail.com',
@@ -119,7 +119,7 @@ class UserSeeder extends Seeder
             ]
         ];
 
-        foreach ($this->array as $array) {
+        foreach ($users as $array) {
             User::create($array);
         }
     }

@@ -120,7 +120,7 @@ class TransactionHold extends Model
 
     public function transactionHoldEntries()
 	{
-		return $this->hasMany(TransactionHoldEntry::class);
+		return $this->hasMany(TransactionHoldEntry::class, "TransactionHoldID");
 	}
 
 	public function customer()

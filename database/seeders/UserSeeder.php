@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
             'email' => 'jdgregorio07@gmail.com',
             'password' => Hash::make('Digregorio21##'),
             'enter_price' => TRUE,
-            'SalesRep_id' => 7,
             'type_user' => TRUE,
             'username' => 'digregorio'
         ], [

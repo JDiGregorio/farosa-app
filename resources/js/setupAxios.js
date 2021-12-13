@@ -1,6 +1,3 @@
-
-
-
 const setupAxios = (axios) => {
   axios.interceptors.request.use(
     config => {

@@ -75,7 +75,7 @@ class TransactionHold extends Model
 			$default_tres = 3;
 			$default_verdadero = 1;
 			$default_falso = 0;
-			$default_vacio = "";
+			$default_vacio = null;
 			
 			$model->StoreID = $default_cero;
 			$model->TransactionType = $default_uno;
@@ -108,7 +108,7 @@ class TransactionHold extends Model
 			$model->BatchNumber = $default_tres;
         });
 
-        self::updating(function($model)
+        /*self::updating(function($model)
 		{
 			$default_cero = 0;
 			$default_uno = 1;
@@ -142,7 +142,7 @@ class TransactionHold extends Model
 			$model->DefaultReturnReasonCodeID = $default_cero;		
 			$model->DefaultTaxChangeReasonCodeID = $default_cero;		
 			$model->BatchNumber = $default_tres;
-		});
+		});*/
 
         self::deleting(function($model)
 		{

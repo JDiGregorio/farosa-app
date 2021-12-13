@@ -18,11 +18,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $now = Carbon::now();
-
         DB::table('users')->delete();
 
-        User::createMany([
+        $array = [
             [
                 'name' => 'José Di Gregorio',
                 'email' => 'jdgregorio07@gmail.com',
@@ -119,6 +117,10 @@ class UserSeeder extends Seeder
                 'type_user' => FALSE,
                 'username' => 'HRodriguez'
             ]
-        ]);
+        ];
+
+        foreach ($this->array as $array) {
+            User::create($array);
+        }
     }
 }

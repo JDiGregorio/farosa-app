@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'email' => 'luis.eduardoct85@gmail.com',
             'password' => '$2y$10$Dza5rXoRFZBsLAiyCinKtO0Y2PcpGqgUu0.Q0nWDAH9aE/4rqPlZa',
             'enter_price' => TRUE,
-            'SalesRep_id' => 12,
+            'SalesRep_id' => "12",
             'type_user' => TRUE,
             'username' => 'ecastillo'
         ], [
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             'email' => 'rturcios@farosa.com',
             'password' => '$2y$10$7bNqqyvetXmnWVFgdYJUHe84Hh5blSCEBMNKMQOfphucY7Z1Qh1yW',
             'enter_price' => FALSE,
-            'SalesRep_id' => 6,
+            'SalesRep_id' => "6",
             'type_user' => FALSE,
             'username' => 'Rturcios'
         ], [
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             'email' => 'wgomez@farosa.com',
             'password' => '$2y$10$1TLSftNUDKQC54Zxx/SMo.DJd0iVLOEqXnzS3GQliDOPyElz46yee',             
             'enter_price' => FALSE,
-            'SalesRep_id' => 8,
+            'SalesRep_id' => "8",
             'type_user' => FALSE,
             'username' => 'Wgomez'
         ], [
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'email' => 'dsanchez@farosa.com',
             'password' => '$2y$10$OzB0oKJ9SBzbuaMY5YVgpuiVvkFT9KlW/pWU.XeGqSnVipjdmvGvG',            
             'enter_price' => FALSE,
-            'SalesRep_id' => 3,
+            'SalesRep_id' => "3",
             'type_user' => FALSE,
             'username' => 'Dsanchez'
         ], [
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
             'email' => 'dfunez@farosa.com',
             'password' => '$2y$10$.EOC3k14uql.SRSxmhHYleqDrMQpGrN9OccPJSEKrJPK5Ers7LQpO',
             'enter_price' => FALSE,
-            'SalesRep_id' => 2,
+            'SalesRep_id' => "2",
             'type_user' => FALSE,
             'username' => 'Erodriguez'
         ], [
@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
             'email' => 'alejandro@gmail.com',
             'password' => '$2y$10$Pl.9FbDNjwydwobOtnwtDeIMQNxoJST4BrlAxbU/O3ShiLEzh8uES',
             'enter_price' => TRUE,
-            'SalesRep_id' => 5,
+            'SalesRep_id' => "",
             'type_user' => TRUE,
             'username' => 'Arodriguez' 
         ], [
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'email' => 'elmer@gmail.com',
             'password' => '$2y$10$z0qrWzVKkz9RDbFtqqCJBOXqVoUN3LF8x.NcPmBundhpBNAvGbaJ.',
             'enter_price' => FALSE,
-            'SalesRep_id' => 4,
+            'SalesRep_id' => "4",
             'type_user' => FALSE,
             'username' => 'Eamaya'
         ], [
@@ -90,7 +90,7 @@ class UserSeeder extends Seeder
             'email' => 'carloscanales@farosa.hn',
             'password' => '$2y$10$y4Q7tsE7ioz5x4xmd2jvuuCqpJUVdkHzRw2lN/LMDtUhnKXVvakqq',
             'enter_price' => FALSE,
-            'SalesRep_id' => 1,
+            'SalesRep_id' => "1",
             'type_user' => FALSE,
             'username' => 'ccanales'
         ], [
@@ -98,7 +98,7 @@ class UserSeeder extends Seeder
             'email' => 'wcastro@farosa.com',
             'password' => '$2y$10$2saj8laNAaRt92eSo.FbR.kXUZyEAKOIelfsrwCCogDLc.Zb6L0aq',
             'enter_price' => FALSE,
-            'SalesRep_id' => 13,
+            'SalesRep_id' => "13",
             'type_user' => FALSE,
             'username' => 'Wcastro'
         ], [
@@ -106,7 +106,7 @@ class UserSeeder extends Seeder
             'email' => 'k.alejandrar@hotmail.com',
             'password' => '$2y$10$KgItLRZr0IE/XRqHhcgQtudfnkCVUPj711PEK6bXaSo1WYHsqTdNu',
             'enter_price' => TRUE,
-            'SalesRep_id' => 12,
+            'SalesRep_id' => "12",
             'type_user' => TRUE,
             'username' => 'karodriguez',
         ], [
@@ -114,7 +114,7 @@ class UserSeeder extends Seeder
             'email' => 'heber.rodriguez@farosa.com',
             'password' => '$2y$10$1dyFNgZKg2FqvSClOWGV2eRcolrEVJ4kTIsK8CM1L48Ig/aUAXw3i',
             'enter_price' => FALSE,
-            'SalesRep_id' => 14,
+            'SalesRep_id' => "14",
             'type_user' => FALSE,
             'username' => 'HRodriguez'
         ]);

@@ -571,7 +571,7 @@ const OrderCreate = () => {
                                     Productos
                                 </label>
 
-                                { order.products.length < 13 ? (
+                                { order.products.length < 12 ? (
                                     <button type="button" onClick={() => setModalVisible(true)} className="inline-flex items-center uppercase px-3 py-2 shadow-xs text-xs font-semibold rounded-md text-gray-600 bg-gray-100 border border-gray-200 focus:outline-none">
                                         agregar
                                         <PlusIcon className="ml-2 -mr-0.5 h-4 w-4" />

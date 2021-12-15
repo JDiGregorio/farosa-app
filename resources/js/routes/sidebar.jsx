@@ -25,7 +25,7 @@ const routes = user => {
       name: 'Pedidos'
     },
     {
-      canSee: user.type_user,
+      canSee: user ? user.type_user : false,
       path: '/usuarios',
       icon: 'UsersIcon',
       name: 'Usuarios'

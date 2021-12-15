@@ -75,7 +75,7 @@ class TransactionHold extends Model
 			$default_tres = 3;
 			$default_verdadero = 1;
 			$default_falso = 0;
-			$default_vacio = "N/A";
+			$default_vacio = "";
 			
 			$model->StoreID = $default_cero;
 			$model->TransactionType = $default_uno;

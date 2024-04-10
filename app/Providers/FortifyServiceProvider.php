@@ -38,25 +38,24 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Fortify::createUsersUsing(CreateNewUser::class);
-        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
-        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
-        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+        // Fortify::createUsersUsing(CreateNewUser::class);
+        // Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
+        // Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
+        // Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
     
         Fortify::authenticateUsing(function (Request $request) {
-            // $validator = Validator::make($request->all(), [
-                //'username' => 'required|max:255|exists:users',
-                //'password' => 'required|max:255'
-            // ]);
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|max:255|exists:users',
+                'password' => 'required|max:255'
+            ]);
 
-            // if ($validator->validate()) {
-                $username = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-                $user = User::where($username, $request->username)->first();
+            if ($validator->validate()) {
+                $user = User::where('username', $request->username)->first();
 
                 if ($user && Hash::check($request->password, $user->password)) {
-                    return $user;
+                   return $user;
                 }
-            // }
+            }
         });
 
 
